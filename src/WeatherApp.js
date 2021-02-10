@@ -12,6 +12,7 @@ export default function WeatherApp(props) {
     console.log(result.data);
 
     setWeather({
+      name: city,
       temperature: result.data.main.temp,
       feelslike: result.data.main.feels_like,
       tempmax: result.data.main.temp_max,
@@ -26,7 +27,6 @@ export default function WeatherApp(props) {
 
   function submitForm(e) {
     e.preventDefault();
-    alert(`Getting data of ${city} city`);
 
     /* - - - API DATA - - - */
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=36c8bd885e1b84703cd48d295c95399d&units=metric`;
@@ -249,14 +249,14 @@ export default function WeatherApp(props) {
 
       <section className="citySection">
         <div className="city">
-          <h1>{city}</h1>
+          <h1>{weather.name}</h1>
         </div>
 
         <div className="information">
           <div>
-            <p id="date">Local time</p>
+            <p>Local time</p>
             <p>
-              <span>{weather.description.toUpperCase()}</span>
+              <span>{weather.description}</span>
             </p>
           </div>
 

@@ -1,4 +1,3 @@
-import Weather from "./Weather";
 import WeatherApp from "./WeatherApp";
 
 export default function App() {
