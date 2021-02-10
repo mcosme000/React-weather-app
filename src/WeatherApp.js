@@ -192,8 +192,10 @@ export default function WeatherApp(props) {
 
         <div className="col">
           <p>
-            <a href="https://github.com/mcosme000">Open-source code</a> by Maria
-            C.
+            <a href="https://github.com/mcosme000/React-weather-app">
+              Open-source code
+            </a>{" "}
+            by Maria C.
           </p>
         </div>
       </div>
@@ -355,8 +357,10 @@ export default function WeatherApp(props) {
 
         <div className="col">
           <p>
-            <a href="https://github.com/mcosme000">Open-source code</a> by Maria
-            C.
+            <a href="https://github.com/mcosme000/React-weather-app">
+              Open-source code
+            </a>{" "}
+            by Maria C.
           </p>
         </div>
       </div>
