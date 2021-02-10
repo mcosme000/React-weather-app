@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: var(--white);
+}
+
+:root {
+  --white: #ffffff;
+  --black: #000000;
+  --background: #00509d;
+  --primary: #ffd500;
+  --secondary: #00296b;
+  --terciary: #011941;
+}
+.container {
+  width: 70%;
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 40px;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+li {
+  list-style: none;
+}
+
+@media (max-width: 480px) {
+  .container {
+    width: 100%;
+    margin: 0px;
+    font-size: 15px;
+  }
+}
+
+/* - - -  HEADER  - - - */
+
+header {
+  width: 100%;
+  padding: 0px 10px;
+}
+
+form {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--white);
+  border-radius: 30px;
+  border: none;
+}
+
+form input[type="text"] {
+  padding: 10px;
+  color: var(--black);
+  border: none;
+  font-size: 18px;
+}
+form input[type="text"]:focus,
+form button {
+  outline: none;
+}
+
+form input[type="submit"] {
+  padding: 10px;
+  border: none;
+  background-color: var(--white);
+  color: var(--black);
+  cursor: pointer;
+  font-size: 18px;
+}
+
+form input[type="submit"]:hover {
+  cursor: pointer;
+}
+form input[type="submit"]:focus {
+  outline: none;
+}
+
+/* - - -  SECTION 1. temperature and icon - - - */
+
+.temperatureSection {
+  width: 80%;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+section .temp,
+section .icon {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.temp .tempValue {
+  font-size: 70px;
+}
+
+.temp span {
+  font-size: 18px;
+}
+
+.temp a {
+  text-decoration: none;
+  color: var(--white);
+  margin-left: 5px;
+}
+.temp a:hover,
+.temp a:focus {
+  color: var(--primary);
+}
+
+section .icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+section .icon img {
+  width: 150px;
+}
+
+/* - - -  SECTION 2. city and weather information - - - */
+
+.citySection {
+  width: 80%;
+  margin: 5px 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.citySection .information {
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.information div {
+  width: 50%;
+}
+
+.information #description {
+  text-transform: capitalize;
+}
+
+@media (max-width: 480px) {
+  .city p,
+  .values li {
+    font-size: 15px;
+  }
+
+  .temperatureSection,
+  .citySection {
+    width: 90%;
+  }
+}
+
+/* - - -  FOOTER  - - - */
+
+footer {
+  width: 100%;
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-around;
+  background-color: var(--secondary);
+  padding: 10px;
+}
+
+footer .forecast {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--secondary);
+}
+
+footer .forecast p {
+  padding: 5px;
+}
+
+footer .forecast img {
+  width: 50px;
+}
+
+@media (max-width: 768px) {
+  footer .forecast {
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--secondary);
+  }
+  footer .forecast p {
+    font-size: 13px;
+  }
+
+  footer .forecast i {
+    font-size: 20px;
+  }
+}
+
+/* - - -  LINKS - - - */
+
+.links {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--white);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-family: monospace;
+}
+
+.links .location {
+  display: flex;
+}
+
+.links a,
+.links p {
+  text-decoration: none;
+  color: var(--black);
+  margin-bottom: 5px;
+}
+
+.links a:hover {
+  color: var(--secondary);
+}
