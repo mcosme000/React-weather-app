@@ -99,7 +99,7 @@ form button {
 }
 
 form button:hover {
-  color: var(--primary);
+  color: var(--secondary);
   transition: 0.3s all ease-in-out;
 }
 
