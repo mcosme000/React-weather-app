@@ -1,0 +1,187 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --primaryDark: #f5c9cd;
+  --primary: #f5e3df;
+  --secondary: #0140dd;
+  --primaryFont: "Open Sans", sans-serif;
+  --secondaryFont: "Roboto", sans-serif;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.newWeather {
+  margin: 10px auto;
+  width: 350px;
+  background-color: var(--primary);
+  color: var(--secondary);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  align-items: center;
+  font-family: var(--primaryFont);
+}
+
+@media (max-width: 400px) {
+  .newWeather {
+    width: 90%;
+  }
+}
+
+.paddingContent {
+  width: 100%;
+  padding: 10px;
+}
+
+p {
+  margin: 0px;
+}
+form,
+header,
+section,
+footer {
+  width: 100%;
+  margin: 2px 0px;
+  padding: 5px 10px;
+}
+
+.title {
+  color: var(--white);
+  font-family: var(--secondaryFont);
+  text-transform: uppercase;
+  font-weight: 300;
+}
+h1 {
+  color: var(--white);
+  text-transform: capitalize;
+  font-weight: 100;
+  font-size: 40px;
+  line-height: 1.5;
+  border-bottom: 1px solid var(--primaryDark);
+}
+
+h4 {
+  font-size: 20px;
+}
+
+/* - - - FORM STYLES - - - */
+form {
+  margin: 0px;
+  display: flex;
+  padding: 10px;
+  border-radius: 25px;
+  background-color: var(--white);
+  justify-content: space-around;
+}
+
+form input {
+  border: none;
+  background-color: var(--white);
+}
+form input:focus,
+form button:focus {
+  outline: none;
+}
+
+form input[type="text"] {
+  width: 70%;
+}
+
+form button {
+  border: none;
+  background-color: var(--white);
+  font-size: 20px;
+}
+
+form button:hover {
+  color: var(--primary);
+  transition: 0.3s all ease-in-out;
+}
+
+/* - - - CITY AND HOUR STYLES - - - */
+
+/* - - - ICON AND TEMP. STYLES - - - */
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.icon {
+  padding: 10px;
+}
+.icon i {
+  font-size: 100px;
+  font-weight: 100;
+}
+
+.temperature {
+  width: 55%;
+  margin: 0px;
+  padding: 0px 10px;
+}
+
+.tempValue {
+  font-size: 70px;
+  font-weight: bold;
+}
+
+.temperature .tempmax {
+  font-size: 15px;
+}
+
+.temperature p a {
+  text-decoration: none;
+}
+
+/* - - - WEATHER DATA STYLES - - - */
+.weatherData {
+  display: flex;
+  justify-content: space-between;
+}
+
+.weatherData ul {
+  width: 40%;
+  list-style: none;
+  margin: 0px 5px;
+  padding: 0px;
+}
+
+ul li {
+  margin: 0px;
+}
+/* - - - FOOTER STYLES - - - */
+footer {
+  padding: 10px;
+  margin: 0px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  background-color: var(--primaryDark);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.forecastItem {
+  padding: 5px 10px;
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.forecastItem .time {
+  width: 50%;
+}
+
+.forecastItem i {
+  font-size: 16px;
+}
+
+.forecastItem .forecastMin {
+  color: blue;
+}

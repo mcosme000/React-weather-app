@@ -1,10 +1,10 @@
-import WeatherApp from "./WeatherApp";
+import NewWeather from "./newWeather";
 
 export default function App() {
   return (
     <div className="App">
       <div className="App">
-        <WeatherApp />
+        <NewWeather />
       </div>
     </div>
   );
