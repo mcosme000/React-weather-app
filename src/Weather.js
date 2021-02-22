@@ -8,12 +8,10 @@ export default function Weather(props) {
   const [weather, setWeather] = useState(" ");
   const [loaded, setLoaded] = useState(false);
   const [temperature, setTemperature] = useState(weather.temperature);
-
   /* - - - FUNCTIONS - - - */
 
   function showWeather(result) {
     console.log(result.data);
-
     /* - - Getting the weather data from API - - */
     setWeather({
       name: city,
@@ -144,16 +142,48 @@ export default function Weather(props) {
     </div>
   );
 
-  const styles = {
-    color: "#0140dd",
-    backgroundColor: "blue",
+  let styles = {
+    backgroundColor: "#yellow",
     borderTopLeftRadius: "20px",
     borderTopRightRadius: "20px",
   };
+  let stylesForecast = {
+    backgroundColor: "#yellow",
+  };
 
-  if (weather.temperature > 0) {
-    styles.backgroundColor = "green";
-    styles.color = "white";
+  //ESTILOS DE COLORES
+
+  if (
+    weather.description === "clear sky" ||
+    weather.description === "few clouds"
+  ) {
+    styles.backgroundColor = "#f3e6b9";
+    stylesForecast.backgroundColor = "#f5d98e";
+  } else {
+    if (
+      weather.description === "	scattered clouds" ||
+      weather.description === "broken clouds"
+    ) {
+      styles.backgroundColor = "#BFBFBF";
+      stylesForecast.background = "#96939B";
+    } else {
+      if (
+        weather.description === "shower rain" ||
+        weather.description === "rain"
+      ) {
+        styles.backgroundColor = "#e6e3d2";
+        stylesForecast.backgroundColor = "#4472CA";
+      } else {
+        if (
+          weather.description === "light snow" ||
+          weather.description === "snow" ||
+          weather.description === "mist"
+        ) {
+          styles.backgroundColor = "#D6E3F8";
+          stylesForecast.backgroundColor = "blue";
+        }
+      }
+    }
   }
 
   const updatedContent = (
@@ -169,7 +199,7 @@ export default function Weather(props) {
         <header>
           <h1>{weather.name}</h1>
           <h6>{weather.description}</h6>
-          <h6>{weather.date.getMonth()}</h6>
+          <h6>fecha</h6>
         </header>
 
         <section className="main">
@@ -207,7 +237,7 @@ export default function Weather(props) {
           </p>
         </section>
       </div>
-      <footer>
+      <footer style={stylesForecast}>
         <h5 className="title">Forecast</h5>
         <div className="forecast">
           <div className="forecastItem">
