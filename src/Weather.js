@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import "./newWeather.css";
+import "./Weather.css";
 import axios from "axios";
 
-export default function NewWeather(props) {
+export default function Weather(props) {
   /* - - - STATES - - - */
   const [city, setCity] = useState("Tokyo");
   const [weather, setWeather] = useState(" ");
@@ -20,9 +20,11 @@ export default function NewWeather(props) {
       temperature: result.data.main.temp,
       tempmax: result.data.main.temp_max,
       tempmin: result.data.main.temp_min,
+      date: new Date(result.data.dt * 1000),
       description: result.data.weather[0].description,
       wind: result.data.wind.speed,
       humidity: result.data.main.humidity,
+      iconURL: `http://openweathermap.org/img/wn/${result.data.weather[0].icon}@2x.png`,
     });
 
     setLoaded(true);
@@ -52,6 +54,7 @@ export default function NewWeather(props) {
       <div className="paddingContent">
         <form onSubmit={formSubmit}>
           <input type="text" onChange={getInput} />
+
           <button type="submit" value="Search">
             <i className="fas fa-search"></i>
           </button>
@@ -59,8 +62,8 @@ export default function NewWeather(props) {
 
         <header>
           <h1>Tokyo</h1>
-          <h4>few clouds</h4>
-          <h4>Friday 12th, 10.45AM</h4>
+          <h6>few clouds</h6>
+          <h6>Friday 12th, 10.45AM</h6>
         </header>
 
         <section className="main">
@@ -72,25 +75,15 @@ export default function NewWeather(props) {
               <span className="tempValue">24</span> <a href="#">ºC</a> |{" "}
               <a href="#">F</a>
             </p>
-            <p className="tempmax">
-              <span>max 20ºC</span> | <span>min 18ºC</span>
-            </p>
+            <p className="tempmax">max 20ºC | min 18ºC</p>
           </div>
         </section>
 
         <section className="weatherData">
-          <ul>
-            <li>
-              <span>Humidity</span>
-            </li>
-            <li>
-              <span>Wind</span>
-            </li>
-          </ul>
-          <ul>
-            <li></li>
-            <li>2</li>
-          </ul>
+          <p>
+            <span>Humidity</span>
+          </p>
+          <p>Wind</p>
         </section>
       </div>
       <footer>
@@ -151,9 +144,21 @@ export default function NewWeather(props) {
     </div>
   );
 
+  const styles = {
+    color: "#0140dd",
+    backgroundColor: "blue",
+    borderTopLeftRadius: "20px",
+    borderTopRightRadius: "20px",
+  };
+
+  if (weather.temperature > 0) {
+    styles.backgroundColor = "green";
+    styles.color = "white";
+  }
+
   const updatedContent = (
     <div className="newWeather">
-      <div className="paddingContent">
+      <div className="paddingContent" style={styles}>
         <form onSubmit={formSubmit}>
           <input type="text" onChange={getInput} />
           <button type="submit" value="Search">
@@ -163,13 +168,13 @@ export default function NewWeather(props) {
 
         <header>
           <h1>{weather.name}</h1>
-          <h4>{weather.description}</h4>
-          <h4>Friday 12th, 10.45AM</h4>
+          <h6>{weather.description}</h6>
+          <h6>{weather.date.getMonth()}</h6>
         </header>
 
         <section className="main">
           <div className="icon">
-            <i className="far fa-sun"></i>
+            <img src={weather.iconUrl} />
           </div>
           <div className="temperature">
             <p>
@@ -192,18 +197,14 @@ export default function NewWeather(props) {
         </section>
 
         <section className="weatherData">
-          <ul>
-            <li>
-              <span>{weather.humidity}%</span>
-            </li>
-            <li>
-              <span>{Math.round(weather.wind)}km/h</span>
-            </li>
-          </ul>
-          <ul>
-            <li></li>
-            <li>2</li>
-          </ul>
+          <p>
+            Humidity:
+            <span> {weather.humidity}%</span>
+          </p>
+          <p>
+            Wind:
+            <span> {Math.round(weather.wind)}m/h</span>
+          </p>
         </section>
       </div>
       <footer>

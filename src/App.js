@@ -1,10 +1,12 @@
-import NewWeather from "./newWeather";
+import Weather from "./Weather";
+import Coder from "./Coder";
 
 export default function App() {
   return (
     <div className="App">
       <div className="App">
-        <NewWeather />
+        <Weather />
+        <Coder />
       </div>
     </div>
   );

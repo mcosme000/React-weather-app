@@ -16,7 +16,8 @@
 
 .newWeather {
   margin: 10px auto;
-  width: 350px;
+  width: 90%;
+  max-width: 350px;
   background-color: var(--primary);
   color: var(--secondary);
   border-radius: 20px;
@@ -27,15 +28,9 @@
   font-family: var(--primaryFont);
 }
 
-@media (max-width: 400px) {
-  .newWeather {
-    width: 90%;
-  }
-}
-
 .paddingContent {
   width: 100%;
-  padding: 10px;
+  padding: 20px;
 }
 
 p {
@@ -46,8 +41,7 @@ header,
 section,
 footer {
   width: 100%;
-  margin: 2px 0px;
-  padding: 5px 10px;
+  padding: 10px;
 }
 
 .title {
@@ -57,23 +51,20 @@ footer {
   font-weight: 300;
 }
 h1 {
-  color: var(--white);
+  color: var(--secondary);
   text-transform: capitalize;
-  font-weight: 100;
+  font-weight: bold;
+  line-height: 1.2;
   font-size: 40px;
-  line-height: 1.5;
   border-bottom: 1px solid var(--primaryDark);
-}
-
-h4 {
-  font-size: 20px;
+  text-transform: uppercase;
 }
 
 /* - - - FORM STYLES - - - */
 form {
   margin: 0px;
   display: flex;
-  padding: 10px;
+  padding: 5px;
   border-radius: 25px;
   background-color: var(--white);
   justify-content: space-around;
@@ -98,6 +89,10 @@ form button {
   font-size: 20px;
 }
 
+form .deleteBtn {
+  color: grey;
+}
+
 form button:hover {
   color: var(--secondary);
   transition: 0.3s all ease-in-out;
@@ -113,15 +108,21 @@ form button:hover {
 }
 
 .icon {
+  width: 40%;
   padding: 10px;
+  background: yellow;
 }
+
 .icon i {
+  width: 100%;
   font-size: 100px;
-  font-weight: 100;
+}
+.icon img {
+  width: 100%;
 }
 
 .temperature {
-  width: 55%;
+  width: 60%;
   margin: 0px;
   padding: 0px 10px;
 }
@@ -145,15 +146,12 @@ form button:hover {
   justify-content: space-between;
 }
 
-.weatherData ul {
+.weatherData p {
   width: 40%;
   list-style: none;
   margin: 0px 5px;
   padding: 0px;
-}
-
-ul li {
-  margin: 0px;
+  margin: 0;
 }
 /* - - - FOOTER STYLES - - - */
 footer {
@@ -165,6 +163,10 @@ footer {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+}
+
+footer .title {
+  color: var(--secondary);
 }
 
 .forecastItem {
