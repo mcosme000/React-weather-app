@@ -153,7 +153,7 @@ export default function Weather(props) {
 
   //ESTILOS DE COLORES
 
-  if (
+  /*if (
     weather.description === "clear sky" ||
     weather.description === "few clouds"
   ) {
@@ -161,7 +161,7 @@ export default function Weather(props) {
     stylesForecast.backgroundColor = "#f5d98e";
   } else {
     if (
-      weather.description === "	scattered clouds" ||
+      weather.description === "scattered clouds" ||
       weather.description === "broken clouds"
     ) {
       styles.backgroundColor = "#BFBFBF";
@@ -186,6 +186,8 @@ export default function Weather(props) {
     }
   }
 
+  */
+
   const updatedContent = (
     <div className="newWeather">
       <div className="paddingContent" style={styles}>
@@ -199,7 +201,7 @@ export default function Weather(props) {
         <header>
           <h1>{weather.name}</h1>
           <h6>{weather.description}</h6>
-          <h6>fecha</h6>
+          <h6>{weather.date.getMinutes()}</h6>
         </header>
 
         <section className="main">
