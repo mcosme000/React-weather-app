@@ -28,7 +28,7 @@
   font-family: var(--primaryFont);
 }
 
-.paddingContent {
+#paddingContent {
   width: 100%;
   padding: 20px;
 }
@@ -186,3 +186,43 @@ footer .title {
 .forecastItem .forecastMin {
   color: blue;
 }
+
+/* - - - CHANGING COLOR STYLES - - - */
+/*
+
+I added the styles in the component 
+so this code is not neccesary. 
+(just reference!)
+.sunny {
+  background-color: #f3e6b9;
+}
+
+.sunnyForecast {
+  background-color: #f5d98e;
+}
+
+.clouds {
+  background-color: #bfbfbf;
+}
+
+.cloudsForecast {
+  background-color: #96939b;
+}
+
+.rain {
+  background-color: #e6e3d2;
+}
+
+.rainForecast {
+  background-color: #4472ca;
+}
+
+.snow {
+  background-color: #d6e3f8;
+}
+
+.snowForecast {
+  background-color: #a9b7ce;
+}
+
+*/

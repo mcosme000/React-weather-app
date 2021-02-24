@@ -49,7 +49,7 @@ export default function Weather(props) {
 
   const baseContent = (
     <div className="newWeather">
-      <div className="paddingContent">
+      <div id="paddingContent">
         <form onSubmit={formSubmit}>
           <input type="text" onChange={getInput} />
 
@@ -142,164 +142,209 @@ export default function Weather(props) {
     </div>
   );
 
-  let styles = {
-    backgroundColor: "#yellow",
-    borderTopLeftRadius: "20px",
-    borderTopRightRadius: "20px",
-  };
-  let stylesForecast = {
-    backgroundColor: "#yellow",
-  };
+  //- - - - - - HERE THE UPDATED CONTENT LOADS - - - - - - //
+  if (loaded) {
+    let styles = {
+      backgroundColor: "#yellow",
+      borderTopLeftRadius: "20px",
+      borderTopRightRadius: "20px",
+    };
+    let stylesForecast = {
+      backgroundColor: "#yellow",
+    };
 
-  //ESTILOS DE COLORES
-
-  /*if (
-    weather.description === "clear sky" ||
-    weather.description === "few clouds"
-  ) {
-    styles.backgroundColor = "#f3e6b9";
-    stylesForecast.backgroundColor = "#f5d98e";
-  } else {
     if (
-      weather.description === "scattered clouds" ||
-      weather.description === "broken clouds"
+      weather.description === "clear sky" ||
+      weather.description === "few clouds"
     ) {
-      styles.backgroundColor = "#BFBFBF";
-      stylesForecast.background = "#96939B";
+      styles.backgroundColor = "#f3e6b9";
+      stylesForecast.backgroundColor = "#f5d98e";
     } else {
       if (
-        weather.description === "shower rain" ||
-        weather.description === "rain"
+        weather.description === "scattered clouds" ||
+        weather.description === "broken clouds" ||
+        weather.description === "overcast clouds"
       ) {
-        styles.backgroundColor = "#e6e3d2";
-        stylesForecast.backgroundColor = "#4472CA";
+        styles.backgroundColor = "#BFBFBF";
+        stylesForecast.background = "#96939B";
       } else {
         if (
-          weather.description === "light snow" ||
-          weather.description === "snow" ||
-          weather.description === "mist"
+          weather.description === "shower rain" ||
+          weather.description === "rain"
         ) {
-          styles.backgroundColor = "#D6E3F8";
-          stylesForecast.backgroundColor = "blue";
+          styles.backgroundColor = "#e6e3d2";
+          stylesForecast.backgroundColor = "#4472CA";
+        } else {
+          if (
+            weather.description === "light snow" ||
+            weather.description === "snow" ||
+            weather.description === "mist"
+          ) {
+            styles.backgroundColor = "#D6E3F8";
+            stylesForecast.backgroundColor = "#a9b7ce";
+          }
         }
       }
     }
-  }
 
-  */
+    return (
+      <div className="newWeather">
+        <div id="paddingContent" style={styles}>
+          <form onSubmit={formSubmit}>
+            <input type="text" onChange={getInput} />
+            <button type="submit" value="Search">
+              <i className="fas fa-search"></i>
+            </button>
+          </form>
 
-  const updatedContent = (
-    <div className="newWeather">
-      <div className="paddingContent" style={styles}>
-        <form onSubmit={formSubmit}>
-          <input type="text" onChange={getInput} />
-          <button type="submit" value="Search">
-            <i className="fas fa-search"></i>
-          </button>
-        </form>
+          <header>
+            <h1>{weather.name}</h1>
+            <h6>{weather.description}</h6>
+            <h6>time</h6>
+          </header>
 
-        <header>
-          <h1>{weather.name}</h1>
-          <h6>{weather.description}</h6>
-          <h6>{weather.date.getMinutes()}</h6>
-        </header>
+          <section className="main">
+            <div className="icon">
+              <img src={weather.iconUrl} />
+            </div>
+            <div className="temperature">
+              <p>
+                <span className="tempValue">
+                  {Math.round(weather.temperature)}
+                </span>
+                <a href="#" onClick={toCelsius}>
+                  ºC
+                </a>
+                |
+                <a href="#" onClick={toFahrenheit}>
+                  F
+                </a>
+              </p>
+              <p className="tempmax">
+                <span>max {Math.round(weather.tempmax)}ºC</span> |
+                <span> min{Math.round(weather.tempmin)}ºC</span>
+              </p>
+            </div>
+          </section>
 
-        <section className="main">
-          <div className="icon">
-            <img src={weather.iconUrl} />
-          </div>
-          <div className="temperature">
+          <section className="weatherData">
             <p>
-              <span className="tempValue">
-                {Math.round(weather.temperature)}
-              </span>{" "}
-              <a href="#" onClick={toCelsius}>
-                ºC
-              </a>{" "}
-              |{" "}
-              <a href="#" onClick={toFahrenheit}>
-                F
-              </a>
-            </p>
-            <p className="tempmax">
-              <span>max {Math.round(weather.tempmax)}ºC</span> |
-              <span> min{Math.round(weather.tempmin)}ºC</span>
-            </p>
-          </div>
-        </section>
-
-        <section className="weatherData">
-          <p>
-            Humidity:
-            <span> {weather.humidity}%</span>
-          </p>
-          <p>
-            Wind:
-            <span> {Math.round(weather.wind)}m/h</span>
-          </p>
-        </section>
-      </div>
-      <footer style={stylesForecast}>
-        <h5 className="title">Forecast</h5>
-        <div className="forecast">
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
+              Humidity:
+              <span> {weather.humidity}%</span>
             </p>
             <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
+              Wind:
+              <span> {Math.round(weather.wind)}m/h</span>
             </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
+          </section>
         </div>
-      </footer>
-    </div>
-  );
-
-  if (loaded) {
-    return updatedContent;
+        <footer style={stylesForecast}>
+          <h5 className="title">Forecast</h5>
+          <div className="forecast">
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <p>
+                <i className="fas fa-sun"></i>
+              </p>
+              <p>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
+              </p>
+            </div>
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <p>
+                <i className="fas fa-sun"></i>
+              </p>
+              <p>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
+              </p>
+            </div>
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <p>
+                <i className="fas fa-sun"></i>
+              </p>
+              <p>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
+              </p>
+            </div>
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <p>
+                <i className="fas fa-sun"></i>
+              </p>
+              <p>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
+              </p>
+            </div>
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <p>
+                <i className="fas fa-sun"></i>
+              </p>
+              <p>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
+              </p>
+            </div>
+          </div>
+        </footer>
+      </div>
+    );
   } else {
     return baseContent;
   }
 }
+
+/* - - - - - - - - - - - - - - -  NOTES  - - - - - - - - - - - - */
+/* 
+a different way for the changing styles: 
+
+1. create empty variables
+2. assign the class name for those variables depending on the
+weather description 
+  (the css goes in the .css file)
+
+
+let containerStyle = "";
+    let forecastStyle = "";
+
+    if (
+      weather.description === "clear sky" ||
+      weather.description === "few clouds"
+    ) {
+      containerStyle = "sunny";
+      forecastStyle = "sunnyForecast";
+    } else {
+      if (
+        weather.description === "scattered clouds" ||
+        weather.description === "broken clouds" ||
+        weather.description === "overcast clouds"
+      ) {
+        containerStyle = "clouds";
+        forecastStyle = "cloudsForecast";
+      } else {
+        if (
+          weather.description === "shower rain" ||
+          weather.description === "rain"
+        ) {
+          containerStyle = "rain";
+          forecastStyle = "rainForecast";
+        } else {
+          if (
+            weather.description === "light snow" ||
+            weather.description === "snow" ||
+            weather.description === "mist"
+          ) {
+            containerStyle = "snow";
+            forecastStyle = "snowForecast";
+          }
+        }
+      }
+    }
+
+*/
