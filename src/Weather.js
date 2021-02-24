@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import "./Weather.css";
+import DateComponent from "./DateComponent";
+import sunny from "./media/sunny.png";
+import overcast from "./media/overcast.png";
+import clouds from "./media/clouds.png";
+import rain from "./media/rain.png";
+import snow from "./media/snow.png";
+import mist from "./media/mist.png";
+
 import axios from "axios";
 
 export default function Weather(props) {
@@ -22,7 +30,7 @@ export default function Weather(props) {
       description: result.data.weather[0].description,
       wind: result.data.wind.speed,
       humidity: result.data.main.humidity,
-      iconURL: `http://openweathermap.org/img/wn/${result.data.weather[0].icon}@2x.png`,
+      icon: result.data.weather[0].icon,
     });
 
     setLoaded(true);
@@ -61,12 +69,12 @@ export default function Weather(props) {
         <header>
           <h1>Tokyo</h1>
           <h6>few clouds</h6>
-          <h6>Friday 12th, 10.45AM</h6>
+          <h6>Friday 12, 10:45AM</h6>
         </header>
 
         <section className="main">
           <div className="icon">
-            <i className="far fa-sun"></i>
+            <img src={sunny} />
           </div>
           <div className="temperature">
             <p>
@@ -89,19 +97,9 @@ export default function Weather(props) {
         <div className="forecast">
           <div className="forecastItem">
             <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
+            <div>
+              <img src={overcast} />
+            </div>
             <p>
               <span className="forecastMax">24</span> |
               <span className="forecastMin">20</span>
@@ -109,19 +107,9 @@ export default function Weather(props) {
           </div>
           <div className="forecastItem">
             <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <p>
-              <i className="fas fa-sun"></i>
-            </p>
+            <div>
+              <img src={rain} />
+            </div>
             <p>
               <span className="forecastMax">24</span> |
               <span className="forecastMin">20</span>
@@ -129,9 +117,29 @@ export default function Weather(props) {
           </div>
           <div className="forecastItem">
             <p className="time">9.00</p>
+            <div>
+              <img src={rain} />
+            </div>
             <p>
-              <i className="fas fa-sun"></i>
+              <span className="forecastMax">24</span> |
+              <span className="forecastMin">20</span>
             </p>
+          </div>
+          <div className="forecastItem">
+            <p className="time">9.00</p>
+            <div>
+              <img src={sunny} />
+            </div>
+            <p>
+              <span className="forecastMax">24</span> |
+              <span className="forecastMin">20</span>
+            </p>
+          </div>
+          <div className="forecastItem">
+            <p className="time">9.00</p>
+            <div>
+              <img src={overcast} />
+            </div>
             <p>
               <span className="forecastMax">24</span> |
               <span className="forecastMin">20</span>
@@ -153,12 +161,14 @@ export default function Weather(props) {
       backgroundColor: "#yellow",
     };
 
+    let weatherIcon = "";
     if (
       weather.description === "clear sky" ||
       weather.description === "few clouds"
     ) {
       styles.backgroundColor = "#f3e6b9";
       stylesForecast.backgroundColor = "#f5d98e";
+      weatherIcon = "sunny";
     } else {
       if (
         weather.description === "scattered clouds" ||
@@ -167,6 +177,7 @@ export default function Weather(props) {
       ) {
         styles.backgroundColor = "#BFBFBF";
         stylesForecast.background = "#96939B";
+        weatherIcon = "clouds";
       } else {
         if (
           weather.description === "shower rain" ||
@@ -174,6 +185,7 @@ export default function Weather(props) {
         ) {
           styles.backgroundColor = "#e6e3d2";
           stylesForecast.backgroundColor = "#4472CA";
+          weatherIcon = "rain";
         } else {
           if (
             weather.description === "light snow" ||
@@ -182,6 +194,7 @@ export default function Weather(props) {
           ) {
             styles.backgroundColor = "#D6E3F8";
             stylesForecast.backgroundColor = "#a9b7ce";
+            weatherIcon = "snow";
           }
         }
       }
@@ -200,12 +213,14 @@ export default function Weather(props) {
           <header>
             <h1>{weather.name}</h1>
             <h6>{weather.description}</h6>
-            <h6>time</h6>
+            <h6>
+              <DateComponent date={weather.date} />
+            </h6>
           </header>
 
           <section className="main">
             <div className="icon">
-              <img src={weather.iconUrl} />
+              <img src={sunny} />
             </div>
             <div className="temperature">
               <p>
@@ -243,19 +258,9 @@ export default function Weather(props) {
           <div className="forecast">
             <div className="forecastItem">
               <p className="time">9.00</p>
-              <p>
-                <i className="fas fa-sun"></i>
-              </p>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <p>
-                <i className="fas fa-sun"></i>
-              </p>
+              <div>
+                <img src={sunny} />
+              </div>
               <p>
                 <span className="forecastMax">24</span> |
                 <span className="forecastMin">20</span>
@@ -263,19 +268,9 @@ export default function Weather(props) {
             </div>
             <div className="forecastItem">
               <p className="time">9.00</p>
-              <p>
-                <i className="fas fa-sun"></i>
-              </p>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <p>
-                <i className="fas fa-sun"></i>
-              </p>
+              <div>
+                <img src={overcast} />
+              </div>
               <p>
                 <span className="forecastMax">24</span> |
                 <span className="forecastMin">20</span>
@@ -283,9 +278,29 @@ export default function Weather(props) {
             </div>
             <div className="forecastItem">
               <p className="time">9.00</p>
+              <div>
+                <img src={sunny} />
+              </div>
               <p>
-                <i className="fas fa-sun"></i>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
               </p>
+            </div>
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <div>
+                <img src={rain} />
+              </div>
+              <p>
+                <span className="forecastMax">24</span> |
+                <span className="forecastMin">20</span>
+              </p>
+            </div>
+            <div className="forecastItem">
+              <p className="time">9.00</p>
+              <div>
+                <img src={snow} />
+              </div>
               <p>
                 <span className="forecastMax">24</span> |
                 <span className="forecastMin">20</span>

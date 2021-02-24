@@ -30,7 +30,7 @@
 
 #paddingContent {
   width: 100%;
-  padding: 20px;
+  padding: 10px;
 }
 
 p {
@@ -108,22 +108,19 @@ form button:hover {
 }
 
 .icon {
+  display: flex;
+  align-items: center;
   width: 40%;
-  padding: 10px;
+  padding: 5px;
 }
 
-.icon i {
-  width: 100%;
-  font-size: 100px;
-}
 .icon img {
   width: 100%;
 }
 
 .temperature {
-  width: 60%;
+  width: 55%;
   margin: 0px;
-  padding: 0px 10px;
 }
 
 .tempValue {
@@ -179,8 +176,13 @@ footer .title {
   width: 50%;
 }
 
-.forecastItem i {
-  font-size: 16px;
+.forecastItem div {
+  width: 25px;
+  height: 25px;
+}
+
+.forecastItem div img {
+  width: 100%;
 }
 
 .forecastItem .forecastMin {
