@@ -1,11 +1,11 @@
 :root {
   --white: #fff;
+  --darkWhite: rgb(238, 238, 238);
   --black: #000;
-  --primaryDark: #f5c9cd;
-  --primary: #f5e3df;
   --secondary: #0140dd;
   --primaryFont: "Open Sans", sans-serif;
   --secondaryFont: "Roboto", sans-serif;
+  --clouds: #cfcfcf;
 }
 
 * {
@@ -18,8 +18,9 @@
   margin: 10px auto;
   width: 90%;
   max-width: 350px;
-  background-color: var(--primary);
-  color: var(--secondary);
+  border: 4px solid var(--black);
+  background-color: var(--darkWhite);
+  color: var(--black);
   border-radius: 20px;
   display: flex;
   flex-direction: column;
@@ -41,7 +42,7 @@ header,
 section,
 footer {
   width: 100%;
-  padding: 10px;
+  padding: 5px 10px;
 }
 
 .title {
@@ -51,12 +52,12 @@ footer {
   font-weight: 300;
 }
 h1 {
-  color: var(--secondary);
+  color: var(--black);
   text-transform: capitalize;
   font-weight: bold;
   line-height: 1.2;
   font-size: 40px;
-  border-bottom: 1px solid var(--primaryDark);
+  border-bottom: 1px solid var(--black);
   text-transform: uppercase;
 }
 
@@ -100,18 +101,27 @@ form button:hover {
 
 /* - - - CITY AND HOUR STYLES - - - */
 
+header div {
+  display: flex;
+}
+
+header div h6 {
+  width: 50%;
+}
+
 /* - - - ICON AND TEMP. STYLES - - - */
 
 .main {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .icon {
   display: flex;
   align-items: center;
-  width: 40%;
-  padding: 5px;
+  width: 50%;
+  padding: 20px;
 }
 
 .icon img {
@@ -119,8 +129,8 @@ form button:hover {
 }
 
 .temperature {
-  width: 55%;
-  margin: 0px;
+  width: 50%;
+  padding: 10px;
 }
 
 .tempValue {
@@ -128,26 +138,22 @@ form button:hover {
   font-weight: bold;
 }
 
-.temperature .tempmax {
-  font-size: 15px;
-}
-
-.temperature p a {
-  text-decoration: none;
-}
-
 /* - - - WEATHER DATA STYLES - - - */
 .weatherData {
   display: flex;
   justify-content: space-between;
 }
-
 .weatherData p {
-  width: 40%;
   list-style: none;
-  margin: 0px 5px;
   padding: 0px;
   margin: 0;
+}
+
+.weatherData .dataValues {
+  width: 45%;
+}
+.weatherData .tempmax {
+  width: 55%;
 }
 /* - - - FOOTER STYLES - - - */
 footer {
@@ -155,34 +161,41 @@ footer {
   margin: 0px;
   border-bottom-right-radius: 20px;
   border-bottom-left-radius: 20px;
-  background-color: var(--primaryDark);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  background: var(--darkWhite);
+  color: var(--black);
 }
 
 footer .title {
-  color: var(--secondary);
+  color: var(--black);
+  font-weight: bold;
+  padding-left: 10px;
 }
 
 .forecastItem {
-  padding: 5px 10px;
+  padding: 5px 20px;
   font-size: 12px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .forecastItem .time {
-  width: 50%;
+  width: 30%;
 }
 
 .forecastItem div {
-  width: 25px;
-  height: 25px;
+  width: 30px;
+  height: 30px;
+  background: var(--darkWhite);
+  border-radius: 50%;
 }
 
 .forecastItem div img {
   width: 100%;
+  padding: 5px;
 }
 
 .forecastItem .forecastMin {

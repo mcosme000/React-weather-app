@@ -68,8 +68,10 @@ export default function Weather(props) {
 
         <header>
           <h1>Tokyo</h1>
-          <h6>few clouds</h6>
-          <h6>Friday 12, 10:45AM</h6>
+          <div>
+            <h6>few clouds</h6>
+            <h6>Friday 12, 10:45AM</h6>
+          </div>
         </header>
 
         <section className="main">
@@ -81,19 +83,21 @@ export default function Weather(props) {
               <span className="tempValue">24</span> <a href="#">ºC</a> |{" "}
               <a href="#">F</a>
             </p>
-            <p className="tempmax">max 20ºC | min 18ºC</p>
           </div>
         </section>
 
         <section className="weatherData">
-          <p>
-            <span>Humidity</span>
-          </p>
-          <p>Wind</p>
+          <div className="dataValues">
+            <p>Humidity</p>
+            <p>Wind</p>
+          </div>
+          <div className="tempmax">
+            <p>↑ 20ºC | ↓ 18ºC</p>
+            <p>Feels like 16ºC</p>
+          </div>
         </section>
       </div>
       <footer>
-        <h5 className="title">Forecast</h5>
         <div className="forecast">
           <div className="forecastItem">
             <p className="time">9.00</p>
@@ -154,8 +158,6 @@ export default function Weather(props) {
   if (loaded) {
     let styles = {
       backgroundColor: "#yellow",
-      borderTopLeftRadius: "20px",
-      borderTopRightRadius: "20px",
     };
     let stylesForecast = {
       backgroundColor: "#yellow",
@@ -166,8 +168,7 @@ export default function Weather(props) {
       weather.description === "clear sky" ||
       weather.description === "few clouds"
     ) {
-      styles.backgroundColor = "#f3e6b9";
-      stylesForecast.backgroundColor = "#f5d98e";
+      styles.backgroundColor = "#f5d98e";
       weatherIcon = "sunny";
     } else {
       if (
@@ -176,15 +177,13 @@ export default function Weather(props) {
         weather.description === "overcast clouds"
       ) {
         styles.backgroundColor = "#BFBFBF";
-        stylesForecast.background = "#96939B";
         weatherIcon = "clouds";
       } else {
         if (
           weather.description === "shower rain" ||
           weather.description === "rain"
         ) {
-          styles.backgroundColor = "#e6e3d2";
-          stylesForecast.backgroundColor = "#4472CA";
+          styles.backgroundColor = "#0140dd";
           weatherIcon = "rain";
         } else {
           if (
@@ -193,16 +192,19 @@ export default function Weather(props) {
             weather.description === "mist"
           ) {
             styles.backgroundColor = "#D6E3F8";
-            stylesForecast.backgroundColor = "#a9b7ce";
             weatherIcon = "snow";
+          } else {
+            if (weather.description === "thunderstorm") {
+              styles.backgroundColor = "purple";
+            }
           }
         }
       }
     }
 
     return (
-      <div className="newWeather">
-        <div id="paddingContent" style={styles}>
+      <div className="newWeather" style={styles}>
+        <div id="paddingContent">
           <form onSubmit={formSubmit}>
             <input type="text" onChange={getInput} />
             <button type="submit" value="Search">
@@ -212,10 +214,12 @@ export default function Weather(props) {
 
           <header>
             <h1>{weather.name}</h1>
-            <h6>{weather.description}</h6>
-            <h6>
-              <DateComponent date={weather.date} />
-            </h6>
+            <div>
+              <h6>{weather.description}</h6>
+              <h6>
+                <DateComponent date={weather.date} />
+              </h6>
+            </div>
           </header>
 
           <section className="main">
@@ -235,26 +239,30 @@ export default function Weather(props) {
                   F
                 </a>
               </p>
-              <p className="tempmax">
-                <span>max {Math.round(weather.tempmax)}ºC</span> |
-                <span> min{Math.round(weather.tempmin)}ºC</span>
-              </p>
             </div>
           </section>
 
           <section className="weatherData">
-            <p>
-              Humidity:
-              <span> {weather.humidity}%</span>
-            </p>
-            <p>
-              Wind:
-              <span> {Math.round(weather.wind)}m/h</span>
-            </p>
+            <div className="dataValues">
+              <p>
+                Humidity:
+                <span> {weather.humidity}%</span>
+              </p>
+              <p>
+                Wind:
+                <span> {Math.round(weather.wind)}m/h</span>
+              </p>
+            </div>
+            <div className="tempmax">
+              <p>
+                <span>↑ {Math.round(weather.tempmax)}ºC</span> |
+                <span> ↓ {Math.round(weather.tempmin)}ºC</span>
+              </p>
+              <p>Feels like ºC</p>
+            </div>
           </section>
         </div>
-        <footer style={stylesForecast}>
-          <h5 className="title">Forecast</h5>
+        <footer>
           <div className="forecast">
             <div className="forecastItem">
               <p className="time">9.00</p>
