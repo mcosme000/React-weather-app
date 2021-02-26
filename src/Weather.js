@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "./Weather.css";
+import Icon from "./icons";
+
 import DateComponent from "./DateComponent";
 import sunny from "./media/sunny.png";
 import overcast from "./media/overcast.png";
@@ -165,36 +167,46 @@ export default function Weather(props) {
 
     let weatherIcon = "";
     if (
-      weather.description === "clear sky" ||
-      weather.description === "few clouds"
+      //sunny
+      weather.icon === "01d" ||
+      weather.icon === "01n" ||
+      weather.icon === "02d" ||
+      weather.icon === "02n"
     ) {
       styles.backgroundColor = "#f5d98e";
-      weatherIcon = "sunny";
     } else {
       if (
-        weather.description === "scattered clouds" ||
-        weather.description === "broken clouds" ||
-        weather.description === "overcast clouds"
+        //clouds
+        weather.icon === "03d" ||
+        weather.icon === "03n" ||
+        weather.icon === "04d" ||
+        weather.icon === "04n"
       ) {
         styles.backgroundColor = "#BFBFBF";
-        weatherIcon = "clouds";
       } else {
         if (
-          weather.description === "shower rain" ||
-          weather.description === "rain"
+          //rain
+          weather.icon === "09d" ||
+          weather.icon === "09n" ||
+          weather.icon === "10d" ||
+          weather.icon === "10n"
         ) {
-          styles.backgroundColor = "#0140dd";
-          weatherIcon = "rain";
+          styles.backgroundColor = "#BBD5ED";
         } else {
           if (
-            weather.description === "light snow" ||
-            weather.description === "snow" ||
-            weather.description === "mist"
+            //snow & mist
+            weather.icon === "13d" ||
+            weather.icon === "13n" ||
+            weather.icon === "50d" ||
+            weather.icon === "50n"
           ) {
             styles.backgroundColor = "#D6E3F8";
-            weatherIcon = "snow";
           } else {
-            if (weather.description === "thunderstorm") {
+            if (
+              //thunderstorm
+              weather.icon === "11d" ||
+              weather.icon === "11n"
+            ) {
               styles.backgroundColor = "purple";
             }
           }
@@ -224,7 +236,7 @@ export default function Weather(props) {
 
           <section className="main">
             <div className="icon">
-              <img src={sunny} />
+              <Icon code={weather.icon} />
             </div>
             <div className="temperature">
               <p>
