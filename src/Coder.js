@@ -1,5 +1,4 @@
 import React from "react";
-import "./coder.css";
 
 export default function Coder(props) {
   return (

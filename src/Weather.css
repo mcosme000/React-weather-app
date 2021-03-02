@@ -115,6 +115,7 @@ header div h6 {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 130px;
 }
 
 .icon {
@@ -135,6 +136,15 @@ header div h6 {
 
 .tempValue {
   font-size: 70px;
+  font-weight: bold;
+}
+
+.temperature a {
+  text-decoration: none;
+  color: var(--black);
+}
+.active {
+  color: var(--secondary);
   font-weight: bold;
 }
 
@@ -200,6 +210,18 @@ footer .title {
   color: blue;
 }
 
+/* - - - */
+.coder {
+  width: 90%;
+  max-width: 350px;
+  margin: 10px auto;
+  font-size: 15px;
+  line-height: 1;
+}
+
+.coder a {
+  text-decoration: none;
+}
 /* - - - CHANGING COLOR STYLES - - - */
 /*
 

@@ -1,24 +1,24 @@
 import React, { useState } from "react";
-import "./Weather.css";
-import Icon from "./icons";
-
-import DateComponent from "./DateComponent";
-import sunny from "./media/sunny.png";
-import overcast from "./media/overcast.png";
-import clouds from "./media/clouds.png";
-import rain from "./media/rain.png";
-import snow from "./media/snow.png";
-import mist from "./media/mist.png";
-
 import axios from "axios";
+import "./Weather.css";
+
+import Icon from "./Icons";
+import Temperature from "./Temperature";
+import Forecast from "./Forecast";
+import DateComponent from "./DateComponent";
+
+import sunny from "./media/sunny.png";
 
 export default function Weather(props) {
   /* - - - STATES - - - */
   const [city, setCity] = useState("Tokyo");
   const [weather, setWeather] = useState(" ");
   const [loaded, setLoaded] = useState(false);
-  const [temperature, setTemperature] = useState(weather.temperature);
+
   /* - - - FUNCTIONS - - - */
+  function getInput(e) {
+    setCity(e.target.value);
+  }
 
   function showWeather(result) {
     console.log(result.data);
@@ -28,6 +28,7 @@ export default function Weather(props) {
       temperature: result.data.main.temp,
       tempmax: result.data.main.temp_max,
       tempmin: result.data.main.temp_min,
+      feelslike: result.data.main.feels_like,
       date: new Date(result.data.dt * 1000),
       description: result.data.weather[0].description,
       wind: result.data.wind.speed,
@@ -38,23 +39,22 @@ export default function Weather(props) {
     setLoaded(true);
   }
 
-  // - - - TEMPERATURE CHANGE FUNCTIONS - - - //
-  function toCelsius() {
-    setTemperature(weather.temperature);
-  }
-
-  function toFahrenheit() {
-    setTemperature((weather.temperature.value * 9) / 5 + 32);
-  }
+  /*function showForecast(forecast) {
+    console.log(forecast.data);
+  } */
 
   function formSubmit(e) {
     e.preventDefault();
-    /* API documentation */
+
+    /* API: WEATHER DATA */
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=36c8bd885e1b84703cd48d295c95399d&units=metric`;
     axios.get(apiUrl).then(showWeather);
-  }
-  function getInput(e) {
-    setCity(e.target.value);
+
+    /*
+    // FORECAST API / 5 day / 3 hour forecast data 
+    const forecastApi = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=36c8bd885e1b84703cd48d295c95399d&units=metric`;
+    axios.get(forecastApi).then(showForecast);
+    */
   }
 
   const baseContent = (
@@ -100,58 +100,7 @@ export default function Weather(props) {
         </section>
       </div>
       <footer>
-        <div className="forecast">
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <div>
-              <img src={overcast} />
-            </div>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <div>
-              <img src={rain} />
-            </div>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <div>
-              <img src={rain} />
-            </div>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <div>
-              <img src={sunny} />
-            </div>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-          <div className="forecastItem">
-            <p className="time">9.00</p>
-            <div>
-              <img src={overcast} />
-            </div>
-            <p>
-              <span className="forecastMax">24</span> |
-              <span className="forecastMin">20</span>
-            </p>
-          </div>
-        </div>
+        <Forecast />
       </footer>
     </div>
   );
@@ -238,20 +187,7 @@ export default function Weather(props) {
             <div className="icon">
               <Icon code={weather.icon} />
             </div>
-            <div className="temperature">
-              <p>
-                <span className="tempValue">
-                  {Math.round(weather.temperature)}
-                </span>
-                <a href="#" onClick={toCelsius}>
-                  ºC
-                </a>
-                |
-                <a href="#" onClick={toFahrenheit}>
-                  F
-                </a>
-              </p>
-            </div>
+            <Temperature temp={weather.temperature} />
           </section>
 
           <section className="weatherData">
@@ -270,63 +206,12 @@ export default function Weather(props) {
                 <span>↑ {Math.round(weather.tempmax)}ºC</span> |
                 <span> ↓ {Math.round(weather.tempmin)}ºC</span>
               </p>
-              <p>Feels like ºC</p>
+              <p>Feels like {Math.round(weather.feelslike)}ºC</p>
             </div>
           </section>
         </div>
         <footer>
-          <div className="forecast">
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <div>
-                <img src={sunny} />
-              </div>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <div>
-                <img src={overcast} />
-              </div>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <div>
-                <img src={sunny} />
-              </div>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <div>
-                <img src={rain} />
-              </div>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-            <div className="forecastItem">
-              <p className="time">9.00</p>
-              <div>
-                <img src={snow} />
-              </div>
-              <p>
-                <span className="forecastMax">24</span> |
-                <span className="forecastMin">20</span>
-              </p>
-            </div>
-          </div>
+          <Forecast city={weather.name} />
         </footer>
       </div>
     );
