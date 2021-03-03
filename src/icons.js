@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 
+//ICONS
 import sunny from "./media/sunny.png";
 import overcast from "./media/overcast.png";
 import clouds from "./media/clouds.png";

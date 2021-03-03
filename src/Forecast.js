@@ -11,34 +11,23 @@ import thunderstorm from "./media/thunderstorm.png";
 
 export default function ForecastItem(props) {
   const [loaded, setLoaded] = useState(false);
-  const [forecast, setForecast] = useState(" ");
+  //this will track if the API is loaded
+  const [forecast, setForecast] = useState(null);
 
   function showForecast(forecast) {
-    console.log(forecast.data);
-
-    setForecast({
-      day1: forecast.data.list[1],
-    });
+    setForecast(forecast.data);
+    setLoaded(true);
   }
 
-  //FORECAST API / 5 day / 3 hour forecast data
-  const apiId = "36c8bd885e1b84703cd48d295c95399d";
-  const forecastApi = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiId}&units=metric`;
+  if (loaded) {
+    console.log(forecast.list[0]);
+    return "loaded";
+  } else {
+    //FORECAST API / 5 day / 3 hour forecast data
+    const apiId = "36c8bd885e1b84703cd48d295c95399d";
+    const forecastApi = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiId}&units=metric`;
+    axios.get(forecastApi).then(showForecast);
 
-  axios.get(forecastApi).then(showForecast);
-
-  return (
-    <div className="forecast">
-      <div className="forecastItem">
-        <p className="time">9.00</p>
-        <div>
-          <img src={sunny} />
-        </div>
-        <p>
-          <span className="forecastMax">22</span> |
-          <span className="forecastMin">20</span>
-        </p>
-      </div>
-    </div>
-  );
+    return null;
+  }
 }

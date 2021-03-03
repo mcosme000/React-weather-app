@@ -15,12 +15,6 @@ export default function DateComponent(props) {
   let minutes = props.date.getMinutes();
   let time = "";
 
-  if (hours > 12) {
-    time = "PM";
-  } else {
-    time = "AM";
-  }
-
   if (hours < 10) {
     hours = `0${hours} AM`;
   }
