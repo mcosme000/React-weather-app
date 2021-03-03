@@ -2,7 +2,7 @@ import React from "react";
 
 //import components
 import DateComponent from "./DateComponent";
-import Icon from "./Icons";
+import IconComponent from "./IconComponent";
 import Temperature from "./Temperature";
 
 export default function WeatherInfo(props) {
@@ -19,7 +19,7 @@ export default function WeatherInfo(props) {
       </header>
       <section className="main">
         <div className="icon">
-          <Icon code={props.data.icon} />
+          <IconComponent code={props.data.icon} />
         </div>
         <Temperature temp={props.data.temperature} />
       </section>

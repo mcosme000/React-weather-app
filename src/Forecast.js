@@ -3,7 +3,7 @@ import axios from "axios";
 
 //REACT COMPONENTS
 import DateComponent from "./DateComponent";
-import Icon from "./Icons";
+import IconComponent from "./IconComponent";
 import Temperature from "./Temperature";
 
 import sunny from "./media/sunny.png";
@@ -33,7 +33,7 @@ export default function ForecastItem(props) {
             <p>{new Date(forecast.list[0].dt * 1000).getHours()}</p>
           </div>
           <div className="forecastIcon">
-            <Icon code={forecast.list[0].weather[0].icon} />
+            <IconComponent code={forecast.list[0].weather[0].icon} />
           </div>
           <p>
             <span className="forecastMax">ºC</span> |
