@@ -16,10 +16,6 @@ export default function DateComponent(props) {
   let day = weekdays[time.getDay()];
   let minutes = time.getMinutes();
 
-  if (hours < 10) {
-    hours = `0${hours} AM`;
-  }
-
   if (minutes < 10) {
     minutes = `0${minutes}`;
   }
