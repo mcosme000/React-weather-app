@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import axios from "axios";
 
+//REACT COMPONENTS
+import DateComponent from "./DateComponent";
+import Icon from "./Icons";
+import Temperature from "./Temperature";
+
 import sunny from "./media/sunny.png";
 import overcast from "./media/overcast.png";
 import clouds from "./media/clouds.png";
@@ -14,14 +19,30 @@ export default function ForecastItem(props) {
   //this will track if the API is loaded
   const [forecast, setForecast] = useState(null);
 
-  function showForecast(forecast) {
-    setForecast(forecast.data);
+  function showForecast(results) {
+    setForecast(results.data);
     setLoaded(true);
   }
 
   if (loaded) {
-    console.log(forecast.list[0]);
-    return "loaded";
+    console.log(forecast);
+    return (
+      <div className="forecast">
+        <div className="forecastItem">
+          <div className="time">
+            <p>{new Date(forecast.list[0].dt * 1000).getHours()}</p>
+          </div>
+          <div className="forecastIcon">
+            <Icon code={forecast.list[0].weather[0].icon} />
+          </div>
+          <p>
+            <span className="forecastMax">ºC</span> |
+            <span className="forecastMin">20</span>
+          </p>
+        </div>
+      </div>
+    );
+    return Math.round(forecast.list[0].main.temp);
   } else {
     //FORECAST API / 5 day / 3 hour forecast data
     const apiId = "36c8bd885e1b84703cd48d295c95399d";

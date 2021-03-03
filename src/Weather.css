@@ -192,13 +192,12 @@ footer .title {
 
 .forecastItem .time {
   width: 30%;
+  background: var(--darkWhite);
 }
 
-.forecastItem div {
+.forecastItem .forecastIcon {
   width: 30px;
   height: 30px;
-  background: var(--darkWhite);
-  border-radius: 50%;
 }
 
 .forecastItem div img {
@@ -222,6 +221,7 @@ footer .title {
 .coder a {
   text-decoration: none;
 }
+
 /* - - - CHANGING COLOR STYLES - - - */
 /*
 

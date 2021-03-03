@@ -1,6 +1,8 @@
 import React from "react";
 
 export default function DateComponent(props) {
+  let time = props.date;
+
   let weekdays = [
     "Sunday",
     "Monday",
@@ -10,10 +12,9 @@ export default function DateComponent(props) {
     "Friday",
     "Saturday",
   ];
-  let day = weekdays[props.date.getDay()];
-  let hours = props.date.getHours();
-  let minutes = props.date.getMinutes();
-  let time = "";
+  let hours = time.getHours();
+  let day = weekdays[time.getDay()];
+  let minutes = time.getMinutes();
 
   if (hours < 10) {
     hours = `0${hours} AM`;
@@ -23,5 +24,5 @@ export default function DateComponent(props) {
     minutes = `0${minutes}`;
   }
 
-  return `${day}, ${hours}:${minutes} ${time}`;
+  return `${day}, ${hours}:${minutes}`;
 }

@@ -36,7 +36,6 @@ export default function Weather(props) {
   }
 
   function showWeather(result) {
-    console.log(result.data);
     /* - - Getting the weather data from API - - */
     setWeather({
       name: result.data.name,
@@ -124,7 +123,9 @@ export default function Weather(props) {
 
           <WeatherInfo data={weather} />
         </div>
-        <footer></footer>
+        <footer>
+          <Forecast city={city} />
+        </footer>
       </div>
     );
   } else {
