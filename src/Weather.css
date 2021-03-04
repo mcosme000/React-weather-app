@@ -187,14 +187,20 @@ footer .title {
   font-size: 12px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
 }
 
-.forecastItem .time {
+.forecastItem .date {
   width: 30%;
-  background: var(--darkWhite);
+  font-size: 14px;
 }
 
+.right-align {
+  width: 50%;
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
 .forecastItem .forecastIcon {
   width: 30px;
   height: 30px;

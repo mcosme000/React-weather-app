@@ -1,7 +1,7 @@
 import React from "react";
+import "./Weather.css";
 
 import IconComponent from "./IconComponent";
-import DateComponent from "./DateComponent";
 
 export default function ForecastItem(props) {
   function getDay() {
@@ -20,19 +20,21 @@ export default function ForecastItem(props) {
   }
   return (
     <div className="forecastItem">
-      <div className="time">{getDay()}</div>
-      <div className="forecastIcon">
-        <IconComponent code={props.forecast.weather[0].icon} />
+      <div className="date">{getDay()}</div>
+      <div className="right-align">
+        <div className="forecastIcon">
+          <IconComponent code={props.forecast.weather[0].icon} />
+        </div>
+        <p>
+          <span className="forecastMax">
+            {Math.round(props.forecast.main.temp_max)}ºC
+          </span>{" "}
+          |
+          <span className="forecastMin">
+            {Math.round(props.forecast.main.temp_min)}ºC
+          </span>
+        </p>
       </div>
-      <p>
-        <span className="forecastMax">
-          {Math.round(props.forecast.main.temp_max)}ºC
-        </span>{" "}
-        |
-        <span className="forecastMin">
-          {Math.round(props.forecast.main.temp_min)}ºC
-        </span>
-      </p>
     </div>
   );
 }

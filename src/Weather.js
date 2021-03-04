@@ -8,26 +8,19 @@ import "./Weather.css";
 import WeatherInfo from "./WeatherInfo";
 import Forecast from "./Forecast";
 
-//ICONS
-import sunny from "./media/sunny.png";
-
 export default function Weather(props) {
   /* - - - STATES - - - */
   const [city, setCity] = useState(props.city);
   const [weather, setWeather] = useState({});
   const [loaded, setLoaded] = useState(false);
-
+  const [input, setInput] = useState("");
   /* - - - FUNCTIONS - - - */
 
   function search() {
     /* API: WEATHER DATA */
-    const apiId = "36c8bd885e1b84703cd48d295c95399d";
+    const apiId = "7814e5944f598a9e5f5e2d1de4cadb44";
     let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiId}&units=metric`;
     axios.get(apiUrl).then(showWeather);
-  }
-
-  function getInput(e) {
-    setCity(e.target.value);
   }
 
   function formSubmit(e) {
@@ -115,7 +108,7 @@ export default function Weather(props) {
       <div className="newWeather" style={styles}>
         <div id="paddingContent">
           <form onSubmit={formSubmit}>
-            <input type="text" onChange={getInput} />
+            <input type="text" onChange={(e) => setCity(e.target.value)} />
             <button type="submit" value="Search">
               <i className="fas fa-search"></i>
             </button>
@@ -124,7 +117,7 @@ export default function Weather(props) {
           <WeatherInfo data={weather} />
         </div>
         <footer>
-          <Forecast city={city} />
+          <Forecast city={weather.name} />
         </footer>
       </div>
     );

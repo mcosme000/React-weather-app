@@ -14,8 +14,7 @@ export default function Forecast(props) {
     setLoaded(true);
   }
 
-  if (loaded) {
-    console.log(`${forecast.city.name} is the same as ${props.city}`);
+  if (loaded && props.city === forecast.city.name) {
     return (
       <div className="forecast">
         <ForecastItem forecast={forecast.list[8]} />
@@ -27,7 +26,7 @@ export default function Forecast(props) {
     );
   } else {
     //FORECAST API / 5 day / 3 hour forecast data
-    const apiId = "36c8bd885e1b84703cd48d295c95399d";
+    const apiId = "7814e5944f598a9e5f5e2d1de4cadb44";
     const forecastApi = `https://api.openweathermap.org/data/2.5/forecast?q=${props.city}&appid=${apiId}&units=metric`;
     axios.get(forecastApi).then(showForecast);
 
