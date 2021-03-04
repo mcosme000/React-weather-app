@@ -72,7 +72,7 @@ export default function Weather(props) {
         weather.icon === "04d" ||
         weather.icon === "04n"
       ) {
-        styles.backgroundColor = "#BFBFBF";
+        styles.backgroundColor = "#CECECE";
       } else {
         if (
           //rain
